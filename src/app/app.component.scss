@@ -1,0 +1,62 @@
+
+.logo {
+  display: flex;
+  align-items: center;
+  padding: 0px 16px;
+  margin: 16px;
+  color: white;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+.user-info span {
+  font-size: 13px;
+}
+.user-info strong {
+  font-size: 16px;
+}
+.layout {
+  min-height: 100vh;
+}
+
+nz-sider {
+  overflow: auto;
+  height: 100%;
+  position: fixed;
+  left: 0;
+}
+
+.right-layout {
+  margin-left: 200px;
+}
+
+nz-header {
+  height: 75px;
+  padding: 0;
+}
+
+nz-content {
+  margin: 24px 16px 0;
+  overflow: initial;
+}
+
+.inner-content {
+  padding: 24px;
+  background: #fff;
+  text-align: center;
+}
+
+nz-footer {
+  text-align: center;
+}

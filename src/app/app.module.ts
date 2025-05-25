@@ -11,12 +11,15 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DemoNgZorroAntdModule } from './DemoNgZorroAntdModule';
+import { ExpenseComponent } from './components/expense/expense.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 registerLocaleData(en);
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ExpenseComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +27,8 @@ registerLocaleData(en);
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    DemoNgZorroAntdModule
+    DemoNgZorroAntdModule,
+    ReactiveFormsModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US }
