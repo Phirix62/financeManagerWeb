@@ -5,6 +5,7 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { ExpenseService } from 'src/app/services/expense/expense.service';
 
@@ -30,7 +31,8 @@ export class ExpenseComponent {
   constructor(
     private fb: FormBuilder,
     private expenseService: ExpenseService,
-    private message: NzMessageService
+    private message: NzMessageService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -62,6 +64,24 @@ export class ExpenseComponent {
       res => {
         this.expenses = res;
         console.log(this.expenses);
+      }
+    );
+  }
+
+  updateExpense(id: number) {
+    this.router.navigateByUrl(`/expense/${id}/edit`);
+  }
+
+  deleteExpense(id: number) {
+    this.expenseService.deleteExpense(id).subscribe(
+      res => {
+        this.message.success('Expense deleted successfully', {
+          nzDuration: 5000,
+        });
+        this.getAllExpenses();
+      },
+      error => {
+        this.message.error('Failed to delete expense', { nzDuration: 5000 });
       }
     );
   }

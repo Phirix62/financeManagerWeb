@@ -13,13 +13,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DemoNgZorroAntdModule } from './DemoNgZorroAntdModule';
 import { ExpenseComponent } from './components/expense/expense.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UpdateExpenseComponent } from './components/update-expense/update-expense.component';
 
 registerLocaleData(en);
 
 @NgModule({
   declarations: [
     AppComponent,
-    ExpenseComponent
+    ExpenseComponent,
+    UpdateExpenseComponent
   ],
   imports: [
     BrowserModule,

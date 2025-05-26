@@ -1,7 +1,7 @@
 <div>
     <div nz-row>
         <div nz-col nzFlex="2">
-            <nz-card nzType="inner" style="margin-top: 16px;" nzTitle="Post new Expense">
+            <nz-card nzType="inner" style="margin-top: 16px;" nzTitle="Update Expense">
                 <form nz-form [formGroup]="expenseForm" (ngSubmit)="submitForm()" class="custom-form">
                     <nz-form-item >
                         <nz-form-control nzErrorTip="Please input the title!">
@@ -31,30 +31,9 @@
                         </nz-form-control>
                     </nz-form-item>
 
-                    <button nz-button nzType="primary" nzBlock [disabled]="expenseForm.invalid" class="w-100">Post Expense</button>
+                    <button nz-button nzType="primary" nzBlock [disabled]="expenseForm.invalid" class="w-100">Update Expense</button>
 
                 </form>
-            </nz-card>
-        </div>
-        <div nz-col nzFlex="3" style="margin-left: 20px;">
-            <nz-card nzType="inner" style="margin-top: 16px;" nzTitle="Past Expenses">
-                <div nz-card-grid style="width: 100%;" *ngFor="let expense of expenses">
-                    <div nz-row>
-                        <div nz-col nzSpan="18">
-                            <span nz-icon nzType="message" nzTheme="outline"> {{ expense.title }}</span>
-                            - 
-                            <span nz-icon nzType="dollar" nzTheme="outline"> {{ expense.amount}}</span>
-                            - 
-                            <span nz-icon nzType="calendar" nzTheme="outline"> {{ expense.date}}</span>
-                            - 
-                            <span nz-icon nzType="comment" nzTheme="outline"> {{ expense.category}}</span>
-                        </div>
-                        <div nz-col nzSpan="6" style="font-size: 15px;">
-                            <span nz-icon nzType="edit" nzTheme="fill" style="color: blue;" (click)="updateExpense(expense.id)"></span>
-                            <span nz-icon nzType="delete" nzTheme="fill" style="color: red; margin-left: 10px;" (click)="deleteExpense(expense.id)"></span>
-                        </div>
-                    </div>
-                </div>
             </nz-card>
         </div>
     </div>
