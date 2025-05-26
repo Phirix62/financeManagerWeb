@@ -52,6 +52,7 @@ export class ExpenseComponent {
         this.message.success('Expense added successfully', {
           nzDuration: 5000,
         });
+        this.getAllExpenses();
       },
       error => {
         this.message.error('Failed to add expense', { nzDuration: 5000 });
