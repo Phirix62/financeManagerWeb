@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { IncomeService } from 'src/app/services/income/income.service';
@@ -18,7 +18,7 @@ export class UpdateIncomeComponent implements OnInit {
   /** Income ID from route parameters */
   id: number = this.activatedRoute.snapshot.params['id'];
   /** Reactive form for income data */
-  incomeForm: any;
+  incomeForm!: FormGroup;
   /** List of available income categories */
   listOfCategory: any[] = [
     'Salary',
