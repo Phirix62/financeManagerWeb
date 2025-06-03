@@ -1,0 +1,27 @@
+<div nz-row>
+    <div nz-col nzFlex="2">
+        <nz-card nzType="inner" style="margin-top: 16px;" nzTitle="Register">
+            <form nz-form [formGroup]="registerForm" (ngSubmit)="submitForm()">
+                <nz-form-item>
+                    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="username" nzRequired>Username</nz-form-label>
+                    <nz-form-control nzErrorTip="Please input your username!">
+                        <input nz-input formControlName="username" id="username" placeholder="Username" />
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="email" nzRequired>Email</nz-form-label>
+                    <nz-form-control nzErrorTip="Please input a valid email!">
+                        <input nz-input formControlName="email" id="email" type="email" placeholder="Email" />
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>Password</nz-form-label>
+                    <nz-form-control nzErrorTip="Please input your password!">
+                        <input nz-input formControlName="password" id="password" type="password" placeholder="Password" />
+                    </nz-form-control>
+                </nz-form-item>
+                <button nz-button nzType="primary" nzBlock [disabled]="registerForm.invalid">Register</button>
+            </form>
+        </nz-card>
+    </div>
+</div>

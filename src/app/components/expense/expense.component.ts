@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { AuthService } from 'src/app/services/auth.service';
 import { ExpenseService } from 'src/app/services/expense/expense.service';
 
 @Component({
@@ -31,18 +32,20 @@ export class ExpenseComponent {
   constructor(
     private fb: FormBuilder,
     private expenseService: ExpenseService,
+    private authService: AuthService,
     private message: NzMessageService,
     private router: Router
   ) {}
 
   ngOnInit() {
-    this.getAllExpenses();
+    this.getExpenseByUserId();
     this.expenseForm = this.fb.group({
       title: [null, Validators.required],
       amount: [null, Validators.required],
       date: [null, Validators.required],
       category: [null, Validators.required],
       description: [null, Validators.required],
+      user: [this.authService.getCurrentUser(), Validators.required],
     });
   }
 
@@ -52,7 +55,7 @@ export class ExpenseComponent {
         this.message.success('Expense added successfully', {
           nzDuration: 5000,
         });
-        this.getAllExpenses();
+        this.getExpenseByUserId();
       },
       error => {
         this.message.error('Failed to add expense', { nzDuration: 5000 });
@@ -69,6 +72,19 @@ export class ExpenseComponent {
     );
   }
 
+  getExpenseByUserId() {
+    let userId = this.authService.getCurrentUser().id;
+    this.expenseService.getExpenseByUserId(userId).subscribe(
+      res => {
+        this.expenses = res;
+        console.log(this.expenses);
+      },
+      error => {
+        this.message.error('Failed to fetch expenses for user', { nzDuration: 5000 });
+      }
+    );
+  }
+
   updateExpense(id: number) {
     this.router.navigateByUrl(`/expense/${id}/edit`);
   }
@@ -79,7 +95,7 @@ export class ExpenseComponent {
         this.message.success('Expense deleted successfully', {
           nzDuration: 5000,
         });
-        this.getAllExpenses();
+        this.getExpenseByUserId();
       },
       error => {
         this.message.error('Failed to delete expense', { nzDuration: 5000 });

@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { IncomeService } from 'src/app/services/income/income.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-update-income',
@@ -25,6 +26,7 @@ export class UpdateIncomeComponent {
     private message: NzMessageService,
     private router: Router,
     private incomeService: IncomeService,
+    private authService: AuthService,
     private activatedRoute: ActivatedRoute
   ) {}
 
@@ -35,6 +37,7 @@ export class UpdateIncomeComponent {
       date: [null, Validators.required],
       category: [null, Validators.required],
       description: [null, Validators.required],
+      user: [this.authService.getCurrentUser(), Validators.required],
     });
     this.getIncomeById();
   }

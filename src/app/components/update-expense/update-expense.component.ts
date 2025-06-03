@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { ExpenseService } from 'src/app/services/expense/expense.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-update-expense',
@@ -27,6 +28,7 @@ export class UpdateExpenseComponent {
     constructor(
       private fb: FormBuilder,
       private expenseService: ExpenseService,
+      private authService: AuthService,
       private message: NzMessageService,
       private router: Router,
       private activatedRoute: ActivatedRoute
@@ -39,6 +41,7 @@ export class UpdateExpenseComponent {
         date: [null, Validators.required],
         category: [null, Validators.required],
         description: [null, Validators.required],
+        user: [this.authService.getCurrentUser(), Validators.required]
       });
       this.getExpenseById();
     }

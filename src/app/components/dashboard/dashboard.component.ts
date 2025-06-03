@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { StatsService } from 'src/app/services/stats/stats.service';
 import Chart from 'chart.js/auto';
 import { CategoryScale } from 'chart.js/auto';
+import { AuthService } from 'src/app/services/auth.service';
 
 Chart.register(CategoryScale);
 
@@ -24,7 +25,9 @@ export class DashboardComponent {
   @ViewChild('incomeLineChartRef') private incomeLineChartRef:ElementRef;
   @ViewChild('expenseLineChartRef') private expenseLineChartRef:ElementRef;
 
-  constructor(private statsService: StatsService) { 
+  constructor(private statsService: StatsService, private authService: AuthService) {}
+
+  ngOnInit() {
     this.getStats();
     this.getChartData();
   }
@@ -78,7 +81,8 @@ export class DashboardComponent {
   
 
   getStats() {
-    this.statsService.getStats().subscribe(
+    let userId = this.authService.getCurrentUser().id;
+    this.statsService.getStats(userId).subscribe(
       (res) => {
         console.log(res);
         this.stats = res;
@@ -90,7 +94,8 @@ export class DashboardComponent {
   }
 
   getChartData() {
-    this.statsService.getChart().subscribe(
+    let userId = this.authService.getCurrentUser().id;
+    this.statsService.getChart(userId).subscribe(
       (res) => {
         if(res.expenseList != null && res.incomeList != null) {
           this.incomes = res.incomeList;

@@ -1,0 +1,46 @@
+<nz-card nzTitle="Investment Simulator">
+  <div nz-row nzGutter="16">
+    <div nz-col nzSpan="6">
+      <nz-input-number [(ngModel)]="startingAmount" nzPrefix="$" [nzMin]="0" [nzStep]="100"></nz-input-number>
+      <p>Starting Amount</p>
+    </div>
+    <div nz-col nzSpan="6">
+      <nz-input-number [(ngModel)]="contribution" nzPrefix="$" [nzMin]="0" [nzStep]="10"></nz-input-number>
+      <p>Additional Contribution by year</p>
+    </div>
+    <div nz-col nzSpan="6">
+      <nz-input-number [(ngModel)]="rateOfReturn" nzSuffix="%" [nzMin]="0" [nzStep]="0.1"></nz-input-number>
+      <p>Rate of Return</p>
+    </div>
+    <div nz-col nzSpan="6">
+      <nz-input-number [(ngModel)]="yearsToGrow" [nzMin]="1" [nzStep]="1"></nz-input-number>
+      <p>Years to Grow</p>
+    </div>
+  </div>
+  <button nz-button nzType="primary" (click)="calculateInvestment()">Calculate</button>
+
+  <h3 *ngIf="finalAmount" style="color: darkgreen;">This investment will be worth: ${{ finalAmount }}</h3>
+
+    <!-- Chart -->
+  <canvas #investmentChart style="max-width: 800px; margin-top: 20px;"></canvas>
+
+  <!-- Table -->
+  <nz-table #basicTable [nzData]="yearlyData" *ngIf="yearlyData.length">
+    <thead>
+      <tr>
+        <th>Year</th>
+        <th>Total Balance</th>
+        <th>Contributions</th>
+        <th>Total Interest Earned</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{ data.year }}</td>
+        <td>${{ data.total }}</td>
+        <td>${{ data.contribution }}</td>
+        <td>${{ data.interest }}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+</nz-card>

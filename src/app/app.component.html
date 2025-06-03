@@ -3,22 +3,42 @@
     <div class="logo">
       <img src="./assets/avatar.png" alt="Avatar" class="avatar">
       <div class="user-info">
-        <strong>Root</strong>
+        <strong>{{ username || 'Guest' }}</strong>
       </div>
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline">
+      <li nz-menu-item routerLink="/register">
+        <span nz-icon nzType="user-add"></span>
+        <span>Register</span>
+      </li>
       <li nz-menu-item routerLink="/">
-        <span nz-icon nzType="dashboard"></span>
-        <span>Dashboard</span>
+        <span nz-icon nzType="login"></span>
+        <span>Login</span>
       </li>
-      <li nz-menu-item routerLink="/income">
-        <span nz-icon nzType="fund"></span>
-        <span>Income</span>
+      <ng-container *ngIf="isLoggedIn">
+        <li nz-menu-item routerLink="/dashboard">
+          <span nz-icon nzType="dashboard"></span>
+          <span>Dashboard</span>
+        </li>
+        <li nz-menu-item routerLink="/income">
+          <span nz-icon nzType="fund"></span>
+          <span>Income</span>
+        </li>
+        <li nz-menu-item routerLink="/expense">
+          <span nz-icon nzType="fall"></span>
+          <span>Expense</span>
+        </li>
+      </ng-container>
+      <li nz-menu-item routerLink="/investment-simulator">
+        <span nz-icon nzType="line-chart"></span>
+        <span>Investment Simulator</span>
       </li>
-      <li nz-menu-item routerLink="/expense">
-        <span nz-icon nzType="fall"></span>
-        <span>Expense</span>
-      </li>
+      <ng-container *ngIf="isLoggedIn">
+        <li nz-menu-item (click)="logout()">
+          <span nz-icon nzType="logout"></span>
+          <span>Logout</span>
+        </li>
+      </ng-container>
     </ul>
   </nz-sider>
 
