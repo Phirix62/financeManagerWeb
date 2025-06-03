@@ -2,7 +2,8 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { StatsService } from 'src/app/services/stats/stats.service';
 import Chart from 'chart.js/auto';
 import { CategoryScale } from 'chart.js/auto';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
+
 
 Chart.register(CategoryScale);
 
@@ -22,8 +23,8 @@ export class DashboardComponent {
     textAlign: 'center',
   };
 
-  @ViewChild('incomeLineChartRef') private incomeLineChartRef:ElementRef;
-  @ViewChild('expenseLineChartRef') private expenseLineChartRef:ElementRef;
+  @ViewChild('incomeLineChartRef') public incomeLineChartRef:ElementRef;
+  @ViewChild('expenseLineChartRef') public expenseLineChartRef:ElementRef;
 
   constructor(private statsService: StatsService, private authService: AuthService) {}
 
