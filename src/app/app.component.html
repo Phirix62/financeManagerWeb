@@ -7,10 +7,12 @@
       </div>
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline">
+      <ng-container *ngIf="!isLoggedIn">
       <li nz-menu-item routerLink="/register">
         <span nz-icon nzType="user-add"></span>
         <span>Register</span>
       </li>
+      </ng-container>
       <li nz-menu-item routerLink="/">
         <span nz-icon nzType="login"></span>
         <span>Login</span>
